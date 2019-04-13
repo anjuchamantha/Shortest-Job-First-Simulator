@@ -64,48 +64,24 @@ function run() {
         changeColor();
         while (exProcessBurstTime > 0) {
           console.log("t="+time+ " " + exProcess.job + " " + exProcessBurstTime + " " + color);
-          // wait(1000);
+          
           execute();
+          // wait(1000);
           time++;
           totalBurst--;
           exProcessBurstTime--;
         }
-
       }
     } else {
-      
       color = "#F5F7FA";
-      // wait();
+
       execute();
+      // wait(1000);
       time++;
-
     }
-
   }
 }
 
-
-async function simulate() {
-    await timeout(1000);
-    execute();
-}
-
-
-function timeout(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function dynamicSort(property) {
-  var sortOrder = 1;
-  if (property[0] === "-") {
-    sortOrder = -1;
-    property = property.substr(1);
-  }
-  return function (a, b) {
-    var result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
-    return result * sortOrder;
-  }
-}
 
 function wait(ms)
 {
@@ -113,4 +89,27 @@ var d = new Date();
 var d2 = null;
 do { d2 = new Date(); }
 while(d2-d < ms);
+}
+
+
+async function simulate() {
+  await timeout(1000);
+  execute();
+}
+
+
+function timeout(ms) {
+return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function dynamicSort(property) {
+var sortOrder = 1;
+if (property[0] === "-") {
+  sortOrder = -1;
+  property = property.substr(1);
+}
+return function (a, b) {
+  var result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
+  return result * sortOrder;
+}
 }
