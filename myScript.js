@@ -10,7 +10,7 @@ function getTableData() {
   return processArr;
 }
 
-function takeColor(){
+function takeColor() {
   var colorArr = []
 }
 
@@ -24,7 +24,7 @@ function random_color() {
 }
 
 async function run() {
-  
+
   canvasInitiate();
 
   arr = getTableData();
@@ -57,7 +57,7 @@ async function run() {
         exProcessBurstTime = exProcess.burstTime;
         changeColor();
         while (exProcessBurstTime > 0) {
-          console.log("t="+time+ " " + exProcess.job + " " + exProcessBurstTime + " " + color);
+          console.log("t=" + time + " " + exProcess.job + " " + exProcessBurstTime + " " + color);
           await execute();
           time++;
           totalBurst--;
@@ -76,17 +76,17 @@ async function run() {
 
 
 function timeout(ms) {
-return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function dynamicSort(property) {
-var sortOrder = 1;
-if (property[0] === "-") {
-  sortOrder = -1;
-  property = property.substr(1);
-}
-return function (a, b) {
-  var result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
-  return result * sortOrder;
-}
+  var sortOrder = 1;
+  if (property[0] === "-") {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+  return function (a, b) {
+    var result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
+    return result * sortOrder;
+  }
 }

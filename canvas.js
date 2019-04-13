@@ -1,6 +1,6 @@
 var canvas = document.querySelector('canvas');
-canvas.width = parseInt(window.innerWidth / 100) * 100;
-canvas.height = parseInt(window.innerHeight / 130) * 130;
+canvas.width = parseInt(window.innerWidth / 52) * 52 - 52*2;
+canvas.height = parseInt(window.innerHeight / 130) * 130 -130*2;
 var c = canvas.getContext('2d');
 
 var x;
@@ -34,7 +34,7 @@ async function execute() {
         x = 0;
     }
     draw(c, x, y, color, i);
-    x = x + 52;
+    x = x + 50 +2;
     await timeout(1000);
     i++;
 }
@@ -53,6 +53,6 @@ function draw(c, x, y, color, i) {
     c.fillRect(x, y, 50, 50);
     c.fillStyle = '#000080';
     c.font = "10px Comic Sans MS";
-    c.fillText(i, x + 25, y + 62);
+    c.fillText(i+1, x + 26, y + 62);
 
 }

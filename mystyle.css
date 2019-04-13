@@ -1,17 +1,17 @@
 canvas {
-    margin: 10px;
-    /* border: 1px solid black; */
+    margin: 50px;
 }
 
 body {
     color: #404E67;
     background: #F5F7FA;
     font-family: 'Open Sans', sans-serif;
+    margin: 0%
 }
 
 .table-wrapper {
     width: 700px;
-    margin: 30px auto;
+    margin: 5px auto;
     background: #fff;
     padding: 20px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
