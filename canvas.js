@@ -21,7 +21,7 @@ function changeColor() {
     color = random_bg_color();
 }
 
-function execute() {
+async function execute() {
 
 
     if (canvas.width <= x) {
@@ -34,7 +34,8 @@ function execute() {
         x = 0;
     }
     draw(c, x, y, color, i);
-    x = x + 50;
+    x = x + 52;
+    await timeout(1000);
     i++;
 }
 

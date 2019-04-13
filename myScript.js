@@ -5,7 +5,6 @@ function getTableData() {
   for (k = 1; k < rowLength; k++) {
     var objCells = dataTable.rows.item(k).cells;
     var process = new Process(objCells.item(0).innerHTML, objCells.item(1).innerHTML, objCells.item(2).innerHTML, random_color());
-    // console.log(process);
     processArr.push(process);
   }
   return processArr;
@@ -24,19 +23,16 @@ function random_color() {
   return random_color;
 }
 
-function run() {
+async function run() {
   
   canvasInitiate();
 
   arr = getTableData();
   processes = arr.slice(0, arr.length);
-  // console.log(processes);
   var totalBurst = 0;
   for (l = 0; l < processes.length; l++) {
     totalBurst = totalBurst + Number(processes[l].burstTime);
   }
-  // alert(totalBurst);
-  // console.log(processes[0].at)
   time = 0;
   while (true) {
     if (totalBurst <= 0) {
@@ -46,9 +42,7 @@ function run() {
     waitingArr = [];
     for (m = 0; m < processes.length; m++) {
       p = processes[m];
-      // console.log(p.arrivalTime);
       if (p.arrivalTime <= time) {
-        // console.log(processes[y]);
         waitingArr.push(processes[m]);
         processes.splice(m, 1);
         m--;
@@ -64,9 +58,7 @@ function run() {
         changeColor();
         while (exProcessBurstTime > 0) {
           console.log("t="+time+ " " + exProcess.job + " " + exProcessBurstTime + " " + color);
-          
-          execute();
-          // wait(1000);
+          await execute();
           time++;
           totalBurst--;
           exProcessBurstTime--;
@@ -75,27 +67,12 @@ function run() {
     } else {
       color = "#F5F7FA";
 
-      execute();
-      // wait(1000);
+      await execute();
       time++;
     }
   }
 }
 
-
-function wait(ms)
-{
-var d = new Date();
-var d2 = null;
-do { d2 = new Date(); }
-while(d2-d < ms);
-}
-
-
-async function simulate() {
-  await timeout(1000);
-  execute();
-}
 
 
 function timeout(ms) {
