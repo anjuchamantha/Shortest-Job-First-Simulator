@@ -53,6 +53,6 @@ function draw(c, x, y, color, i) {
     c.fillRect(x, y, 50, 50);
     c.fillStyle = '#000080';
     c.font = "10px Comic Sans MS";
-    c.fillText(i+1, x + 26, y + 62);
+    c.fillText(i, x + 26, y + 62);
 
 }

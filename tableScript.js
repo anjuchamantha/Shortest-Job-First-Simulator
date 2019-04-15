@@ -1,17 +1,17 @@
 
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
-    var actions = $("table td:last-child").html();
+    var actions = $("table td:nth-child(4)").html();
     // Append table with add row form on add new button click
     $(".add-new").click(function () {
         $(this).attr("disabled", "disabled");
         var index = $("table tbody tr:last-child").index();
         var row = '<tr>' +
             '<td><input type="text" class="form-control" name="process" id="process"></td>' +
+            
             '<td><input type="text" class="form-control" name="duration" id="duration"></td>' +
             '<td><input type="text" class="form-control" name="arrival" id="arrival"></td>' +
-            '<td>' + actions + '</td>' +
-            '</tr>';
+            '<td>' + actions + '</td>' ;
         $("table").append(row);
         $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
         $('[data-toggle="tooltip"]').tooltip();
@@ -39,7 +39,7 @@ $(document).ready(function () {
     });
     // Edit row on edit button click
     $(document).on("click", ".edit", function () {
-        $(this).parents("tr").find("td:not(:last-child)").each(function () {
+        $(this).parents("tr").find("td:not(:nth-child(4))").each(function () {
             
             $(this).html('<input type="text" class="form-control" value="' + $(this)
                 .text() + '">');

@@ -4,15 +4,12 @@ function getTableData() {
   var processArr = [];
   for (k = 1; k < rowLength; k++) {
     var objCells = dataTable.rows.item(k).cells;
-    var process = new Process(objCells.item(0).innerHTML, objCells.item(1).innerHTML, objCells.item(2).innerHTML, random_color());
+    var process = new Process(objCells.item(0).innerHTML, objCells.item(1).innerHTML, objCells.item(2).innerHTML);
     processArr.push(process);
   }
   return processArr;
 }
 
-function takeColor() {
-  var colorArr = []
-}
 
 function random_color() {
   var a = Math.floor(Math.random() * 256);
@@ -24,7 +21,7 @@ function random_color() {
 }
 
 async function run() {
-
+  
   canvasInitiate();
 
   arr = getTableData();
@@ -54,10 +51,11 @@ async function run() {
 
       for (ex = 0; ex < waitingArr.length; ex++) {
         exProcess = waitingArr[ex];
+        // document.getElementById('processTable').rows[i].cells[j].style.backgroundColor = "#003366";
         exProcessBurstTime = exProcess.burstTime;
         changeColor();
         while (exProcessBurstTime > 0) {
-          console.log("t=" + time + " " + exProcess.job + " " + exProcessBurstTime + " " + color);
+          console.log("t="+time+ " " + exProcess.job + " " + exProcessBurstTime + " " + color);
           await execute();
           time++;
           totalBurst--;
@@ -75,18 +73,19 @@ async function run() {
 
 
 
+
 function timeout(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function dynamicSort(property) {
-  var sortOrder = 1;
-  if (property[0] === "-") {
-    sortOrder = -1;
-    property = property.substr(1);
-  }
-  return function (a, b) {
-    var result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
-    return result * sortOrder;
-  }
+var sortOrder = 1;
+if (property[0] === "-") {
+  sortOrder = -1;
+  property = property.substr(1);
+}
+return function (a, b) {
+  var result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
+  return result * sortOrder;
+}
 }
