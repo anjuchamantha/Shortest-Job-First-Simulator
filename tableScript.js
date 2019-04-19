@@ -10,7 +10,8 @@ $(document).ready(function () {
 
             '<td><input type="text" class="form-control" name="duration" id="duration"></td>' +
             '<td><input type="text" class="form-control" name="arrival" id="arrival"></td>' +
-            '<td>' + actions + '</td>';
+            '<td>' + actions + '</td>' +
+            '<td><class="form-control" name="colour" id="colour"></td>';
         $("table").append(row);
         $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
         $('[data-toggle="tooltip"]').tooltip();

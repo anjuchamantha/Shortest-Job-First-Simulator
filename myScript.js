@@ -81,6 +81,7 @@ async function run() {
       time++;
     }
   }
+  c.fillText(i, x, y + 62);
 }
 
 
