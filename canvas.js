@@ -1,6 +1,6 @@
 var canvas = document.querySelector('canvas');
 canvas.width = parseInt(window.innerWidth / 52) * 52 - 52 * 2;
-canvas.height = parseInt(window.innerHeight / 124) * 124 - 134 ;
+canvas.height = parseInt(window.innerHeight / 124) * 124 - 134;
 var c = canvas.getContext('2d');
 
 var x;
@@ -21,7 +21,7 @@ function changeColor() {
     color = random_bg_color();
 }
 
-async function execute() {
+async function execute(speed) {
 
 
     if (canvas.width <= x) {
@@ -35,7 +35,7 @@ async function execute() {
     }
     draw(c, x, y, color, i);
     x = x + 50 + 2;
-    await timeout(1000);
+    await timeout(speed);
     i++;
 }
 

@@ -19,6 +19,8 @@
     <script src="myScript.js"></script>
     <script src="oop.js"></script>
 
+    
+
 </head>
 
 <body>
@@ -69,7 +71,7 @@
                         </div>
                         <div class="col-sm-4">
                             <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add
-                                New</button>
+                                Process</button>
                         </div>
                     </div>
                 </div>
@@ -80,7 +82,7 @@
                             <th>Burst Time (s)</th>
                             <th>Arrival Time (s)</th>
                             <th>Actions</th>
-                            <th>Colour</th>
+                            <th>Color</th>
                             <th>Waiting Time (s)</th>
                             <th>Turn Around Time (s)</th>
                         </tr>
@@ -181,11 +183,23 @@
 
 
             </div>
+            <div id="speed">Speed :  
+                <select id="drop">
+                    <option value="1000">1x</option>
+                    <option value="500">2x</option>
+                    <option value="200">5x</option>
+                    <option value="100">10x</option>
+                    <option value="10">100x</option>
+                  </select>
+                
             <button type="button" class="btn btn-success" id="bt" onclick="run();">Start</button>
+            <button type="button" class="btn btn-danger" id="btstop" onclick="stop();">Stop</button>
         </div>
-        
+            
+        </div>
+
     </div>
-    
+
 
 
     <canvas>

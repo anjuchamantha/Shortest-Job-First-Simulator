@@ -21,27 +21,31 @@ function random_color() {
 }
 
 async function run() {
-  document.getElementById('bt').style.visibility = 'hidden';
+  time = 0;
+
+  var speed = parseInt(document.getElementById("drop").value);
+  // document.getElementById('bt').style.visibility = 'hidden';
+  document.getElementById('btstop').style.visibility = 'visible';
 
   canvasInitiate();
-
   arr = getTableData();
+  reset(arr);
   processes = arr.slice(0, arr.length);
   var totalBurst = 0;
   for (l = 0; l < processes.length; l++) {
     totalBurst = totalBurst + Number(processes[l].burstTime);
   }
-  time = 0;
-  var tb=0;
+  
+  var tb = 0;
   waitingTimes = [];
   turnAroundTimes = [];
   while (true) {
-    if (tb>=totalBurst) {
+    if (tb >= totalBurst) {
       break;
     }
 
     waitingArr = [];
-    
+
     for (m = 0; m < processes.length; m++) {
       p = processes[m];
       if (p.arrivalTime <= time) {
@@ -57,8 +61,10 @@ async function run() {
       for (ex = 0; ex < waitingArr.length; ex++) {
         exProcess = waitingArr[ex];
 
-        var wt= tb-exProcess.arrivalTime;
-        if(wt<0){wt=0;}
+        var wt = tb - exProcess.arrivalTime;
+        if (wt < 0) {
+          wt = 0;
+        }
 
         exProcessBurstTime = exProcess.burstTime;
         changeColor();
@@ -71,20 +77,21 @@ async function run() {
         console.log("")
         console.log(exProcess.job + " waiting time = " + wt);
         document.getElementById('processTable').rows[pos + 1].cells[5].innerHTML = wt;
-        var turnAroundTime =parseInt(wt) + parseInt(exProcessBurstTime);
+        var turnAroundTime = parseInt(wt) + parseInt(exProcessBurstTime);
         turnAroundTimes.push(turnAroundTime);
         document.getElementById('processTable').rows[pos + 1].cells[6].innerHTML = turnAroundTime;
 
 
         waitingTimes.push(wt);
-        document.getElementById('avgwt').innerHTML = "Average Waiting Time = " + waitingTimes.reduce((a,b) => a + b, 0) / waitingTimes.length;
-        document.getElementById('avgtat').innerHTML = "Average Turn Around Time = " + roundToTwo(turnAroundTimes.reduce((c,d) => c + d, 0) / turnAroundTimes.length);
+        document.getElementById('avgwt').innerHTML = "Average Waiting Time = " + roundToTwo(waitingTimes.reduce((a, b) => a + b, 0) / waitingTimes.length);
+        document.getElementById('avgtat').innerHTML = "Average Turn Around Time = " + roundToTwo(turnAroundTimes.reduce((c, d) => c + d, 0) / turnAroundTimes.length);
 
         document.getElementById('processTable').rows[pos + 1].cells[4].style.backgroundColor = color;
 
         while (exProcessBurstTime > 0) {
           console.log("t=" + time + " " + exProcess.job + " " + exProcessBurstTime + " " + color);
-          await execute();
+          var speed = parseInt(document.getElementById("drop").value);
+          await execute(speed);
           time++;
           tb++;
           exProcessBurstTime--;
@@ -92,12 +99,15 @@ async function run() {
       }
     } else {
       color = "#fff";
-
-      await execute();
+      var speed = parseInt(document.getElementById("drop").value);
+      await execute(speed);
       time++;
     }
   }
   c.fillText(i, x, y + 62);
+  document.getElementById('btstop').innerHTML = "Reload";
+  document.getElementById('avgwt').style.color = 'crimson';
+  document.getElementById('avgtat').style.color = 'crimson';
 }
 
 
@@ -119,10 +129,24 @@ function dynamicSort(property) {
   }
 }
 
-// function refresh() {
-//   document.location.reload(true);
-// }
+function stop() {
+  document.location.reload(true);
+}
 
-function roundToTwo(num) {    
-  return +(Math.round(num + "e+2")  + "e-2");
+function roundToTwo(num) {
+  return num.toFixed(2);
+}
+
+function reset(arr){
+  document.getElementById('avgwt').style.color = '#404E67';
+  document.getElementById('avgtat').style.color = '#404E67';
+  document.getElementById('avgwt').innerHTML = "Average Waiting Time = 0.00";
+        document.getElementById('avgtat').innerHTML = "Average Turn Around Time = 0.00";
+
+  for (q = 1; q <= arr.length; q++) {
+    document.getElementById('processTable').rows[q].cells[4].style.backgroundColor = '#fff';
+    document.getElementById('processTable').rows[q].cells[5].innerHTML = null;
+  document.getElementById('processTable').rows[q].cells[6].innerHTML = null;
+  }
+  
 }
