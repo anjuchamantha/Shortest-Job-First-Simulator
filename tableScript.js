@@ -11,7 +11,9 @@ $(document).ready(function () {
             '<td><input type="text" class="form-control" name="duration" id="duration"></td>' +
             '<td><input type="text" class="form-control" name="arrival" id="arrival"></td>' +
             '<td>' + actions + '</td>' +
-            '<td><class="form-control" name="colour" id="colour"></td>';
+            '<td><class="form-control" name="colour" id="colour"></td>' +
+            '<td><class="form-control" name="wt" id="wt"></td>' +
+            '<td><class="form-control" name="tat" id="tat"></td>';
         $("table").append(row);
         $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
         $('[data-toggle="tooltip"]').tooltip();
@@ -39,7 +41,7 @@ $(document).ready(function () {
     });
     // Edit row on edit button click
     $(document).on("click", ".edit", function () {
-        $(this).parents("tr").find("td:not(:nth-child(4),:nth-child(5))").each(function () {
+        $(this).parents("tr").find("td:not(:nth-child(4),:nth-child(5),:nth-child(6),:nth-child(7))").each(function () {
 
             $(this).html('<input type="text" class="form-control" value="' + $(this)
                 .text() + '">');

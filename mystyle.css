@@ -1,30 +1,43 @@
+p{
+    color: #404E67;
+    font-weight: bold;
+}
+button{
+    margin:1%;
+}
 canvas {
     margin: 50px;
+    padding: 10px;
+    background: #fff;
 }
 
 body {
     color: #404E67;
     background: #F5F7FA;
     font-family: 'Open Sans', sans-serif;
-    margin: 0%
+    margin-top: 2%
 }
 
 .table-wrapper {
-    width: 700px;
+    width: 800px;
     margin: 5px auto;
     background: #fff;
     padding: 20px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    text-align: center;
 }
 
 .table-title {
     padding-bottom: 10px;
     margin: 0 0 10px;
+    text-align: center;
 }
 
 .table-title h2 {
     margin: 6px 0 0;
     font-size: 22px;
+    text-align: center;
+    
 }
 
 .table-title .add-new {
@@ -36,6 +49,7 @@ body {
     min-width: 100px;
     border-radius: 50px;
     line-height: 13px;
+    text-align: center;
 }
 
 .table-title .add-new i {
@@ -49,6 +63,7 @@ table.table {
 table.table tr th,
 table.table tr td {
     border-color: #e9e9e9;
+    width: 120px;
 }
 
 table.table th i {
@@ -57,8 +72,21 @@ table.table th i {
     cursor: pointer;
 }
 
-table.table th:last-child {
+table.table th:nth-child(1) {
     width: 75px;
+}
+table.table th:nth-child(4) {
+    width: 90px;
+}
+table.table th:nth-child(5) {
+    width: 75px;
+}
+table.table th:nth-child(6) {
+    width: 130px;
+}
+
+table.table th:last-child {
+    width: 160px;
 }
 
 
@@ -106,3 +134,4 @@ table.table .form-control.error {
 table.table td .add {
     display: none;
 }
+

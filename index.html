@@ -81,6 +81,8 @@
                             <th>Arrival Time (s)</th>
                             <th>Actions</th>
                             <th>Colour</th>
+                            <th>Waiting Time (s)</th>
+                            <th>Turn Around Time (s)</th>
                         </tr>
                     </thead>
 
@@ -99,6 +101,8 @@
                                         class="material-icons">&#xE872;</i></a>
                             </td>
                             <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>B</td>
@@ -113,6 +117,8 @@
                                 <a class="delete" title="Delete" data-toggle="tooltip"><i
                                         class="material-icons">&#xE872;</i></a>
                             </td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                         </tr>
                         <tr>
@@ -129,6 +135,8 @@
                                         class="material-icons">&#xE872;</i></a>
                             </td>
                             <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>D</td>
@@ -143,6 +151,8 @@
                                 <a class="delete" title="Delete" data-toggle="tooltip"><i
                                         class="material-icons">&#xE872;</i></a>
                             </td>
+                            <td></td>
+                            <td></td>
                             <td></td>
                         </tr>
                         <tr>
@@ -159,18 +169,23 @@
                                         class="material-icons">&#xE872;</i></a>
                             </td>
                             <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
 
                     </tbody>
                 </table>
 
-                <button type="button" class="btn btn-success" id="bt" onclick="run();">Start</button>
+                <p id="avgwt"></p>
+                <p id="avgtat"></p>
 
 
             </div>
-
+            <button type="button" class="btn btn-success" id="bt" onclick="run();">Start</button>
         </div>
+        
     </div>
+    
 
 
     <canvas>

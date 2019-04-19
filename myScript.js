@@ -21,7 +21,7 @@ function random_color() {
 }
 
 async function run() {
-
+  document.getElementById('bt').style.visibility = 'hidden';
 
   canvasInitiate();
 
@@ -32,12 +32,16 @@ async function run() {
     totalBurst = totalBurst + Number(processes[l].burstTime);
   }
   time = 0;
+  var tb=0;
+  waitingTimes = [];
+  turnAroundTimes = [];
   while (true) {
-    if (totalBurst <= 0) {
+    if (tb>=totalBurst) {
       break;
     }
 
     waitingArr = [];
+    
     for (m = 0; m < processes.length; m++) {
       p = processes[m];
       if (p.arrivalTime <= time) {
@@ -52,7 +56,10 @@ async function run() {
 
       for (ex = 0; ex < waitingArr.length; ex++) {
         exProcess = waitingArr[ex];
-        // document.getElementById('processTable').rows[i].cells[j].style.backgroundColor = "#003366";
+
+        var wt= tb-exProcess.arrivalTime;
+        if(wt<0){wt=0;}
+
         exProcessBurstTime = exProcess.burstTime;
         changeColor();
 
@@ -61,8 +68,17 @@ async function run() {
             break
           }
         }
-        console.log(exProcess.job + " " + pos);
+        console.log("")
+        console.log(exProcess.job + " waiting time = " + wt);
+        document.getElementById('processTable').rows[pos + 1].cells[5].innerHTML = wt;
+        var turnAroundTime =parseInt(wt) + parseInt(exProcessBurstTime);
+        turnAroundTimes.push(turnAroundTime);
+        document.getElementById('processTable').rows[pos + 1].cells[6].innerHTML = turnAroundTime;
 
+
+        waitingTimes.push(wt);
+        document.getElementById('avgwt').innerHTML = "Average Waiting Time = " + waitingTimes.reduce((a,b) => a + b, 0) / waitingTimes.length;
+        document.getElementById('avgtat').innerHTML = "Average Turn Around Time = " + roundToTwo(turnAroundTimes.reduce((c,d) => c + d, 0) / turnAroundTimes.length);
 
         document.getElementById('processTable').rows[pos + 1].cells[4].style.backgroundColor = color;
 
@@ -70,12 +86,12 @@ async function run() {
           console.log("t=" + time + " " + exProcess.job + " " + exProcessBurstTime + " " + color);
           await execute();
           time++;
-          totalBurst--;
+          tb++;
           exProcessBurstTime--;
         }
       }
     } else {
-      color = "#F5F7FA";
+      color = "#fff";
 
       await execute();
       time++;
@@ -103,6 +119,10 @@ function dynamicSort(property) {
   }
 }
 
-function refresh() {
-  document.location.reload(true);
+// function refresh() {
+//   document.location.reload(true);
+// }
+
+function roundToTwo(num) {    
+  return +(Math.round(num + "e+2")  + "e-2");
 }
