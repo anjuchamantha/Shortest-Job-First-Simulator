@@ -88,11 +88,12 @@ async function run() {
 
         document.getElementById('processTable').rows[pos + 1].cells[4].style.backgroundColor = color;
         var h = 0;
+        var clr_ = '#fff'
         while (exProcessBurstTime > 0) {
           h++;
           console.log("t=" + time + " " + exProcess.job + " " + exProcessBurstTime + " " + color);
           var speed = parseInt(document.getElementById("drop").value);
-          await execute(speed, exProcess.job + h);
+          await execute(speed, exProcess.job + h,clr_);
           time++;
           tb++;
           exProcessBurstTime--;
@@ -101,7 +102,8 @@ async function run() {
     } else {
       color = "#fff";
       var speed = parseInt(document.getElementById("drop").value);
-      await execute(speed, "-");
+      var clr_ = 'crimson'
+      await execute(speed, "_",clr_);
       time++;
     }
   }
