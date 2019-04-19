@@ -105,6 +105,8 @@ async function run() {
       time++;
     }
   }
+  c.fillStyle = '#000080';
+  c.font = "10px Comic Sans MS";
   c.fillText(i, x, y + 62);
   document.getElementById('btstop').innerHTML = "Reload";
   document.getElementById('avgwt').style.color = 'crimson';
