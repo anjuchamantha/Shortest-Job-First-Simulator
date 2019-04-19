@@ -21,7 +21,8 @@ function random_color() {
 }
 
 async function run() {
-  
+
+
   canvasInitiate();
 
   arr = getTableData();
@@ -54,8 +55,19 @@ async function run() {
         // document.getElementById('processTable').rows[i].cells[j].style.backgroundColor = "#003366";
         exProcessBurstTime = exProcess.burstTime;
         changeColor();
+
+        for (pos = 0; pos < arr.length; pos++) {
+          if (arr[pos].job == exProcess.job) {
+            break
+          }
+        }
+        console.log(exProcess.job + " " + pos);
+
+
+        document.getElementById('processTable').rows[pos + 1].cells[4].style.backgroundColor = color;
+
         while (exProcessBurstTime > 0) {
-          console.log("t="+time+ " " + exProcess.job + " " + exProcessBurstTime + " " + color);
+          console.log("t=" + time + " " + exProcess.job + " " + exProcessBurstTime + " " + color);
           await execute();
           time++;
           totalBurst--;
@@ -75,17 +87,21 @@ async function run() {
 
 
 function timeout(ms) {
-return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function dynamicSort(property) {
-var sortOrder = 1;
-if (property[0] === "-") {
-  sortOrder = -1;
-  property = property.substr(1);
+  var sortOrder = 1;
+  if (property[0] === "-") {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+  return function (a, b) {
+    var result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
+    return result * sortOrder;
+  }
 }
-return function (a, b) {
-  var result = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
-  return result * sortOrder;
-}
+
+function refresh() {
+  document.location.reload(true);
 }

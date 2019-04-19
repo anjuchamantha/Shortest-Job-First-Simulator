@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
     var actions = $("table td:nth-child(4)").html();
@@ -8,10 +7,10 @@ $(document).ready(function () {
         var index = $("table tbody tr:last-child").index();
         var row = '<tr>' +
             '<td><input type="text" class="form-control" name="process" id="process"></td>' +
-            
+
             '<td><input type="text" class="form-control" name="duration" id="duration"></td>' +
             '<td><input type="text" class="form-control" name="arrival" id="arrival"></td>' +
-            '<td>' + actions + '</td>' ;
+            '<td>' + actions + '</td>';
         $("table").append(row);
         $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
         $('[data-toggle="tooltip"]').tooltip();
@@ -39,8 +38,8 @@ $(document).ready(function () {
     });
     // Edit row on edit button click
     $(document).on("click", ".edit", function () {
-        $(this).parents("tr").find("td:not(:nth-child(4))").each(function () {
-            
+        $(this).parents("tr").find("td:not(:nth-child(4),:nth-child(5))").each(function () {
+
             $(this).html('<input type="text" class="form-control" value="' + $(this)
                 .text() + '">');
         });
