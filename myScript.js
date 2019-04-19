@@ -35,7 +35,7 @@ async function run() {
   for (l = 0; l < processes.length; l++) {
     totalBurst = totalBurst + Number(processes[l].burstTime);
   }
-  
+
   var tb = 0;
   waitingTimes = [];
   turnAroundTimes = [];
@@ -87,11 +87,12 @@ async function run() {
         document.getElementById('avgtat').innerHTML = "Average Turn Around Time = " + roundToTwo(turnAroundTimes.reduce((c, d) => c + d, 0) / turnAroundTimes.length);
 
         document.getElementById('processTable').rows[pos + 1].cells[4].style.backgroundColor = color;
-
+        var h = 0;
         while (exProcessBurstTime > 0) {
+          h++;
           console.log("t=" + time + " " + exProcess.job + " " + exProcessBurstTime + " " + color);
           var speed = parseInt(document.getElementById("drop").value);
-          await execute(speed);
+          await execute(speed, exProcess.job + h);
           time++;
           tb++;
           exProcessBurstTime--;
@@ -100,7 +101,7 @@ async function run() {
     } else {
       color = "#fff";
       var speed = parseInt(document.getElementById("drop").value);
-      await execute(speed);
+      await execute(speed, "-");
       time++;
     }
   }
@@ -137,16 +138,16 @@ function roundToTwo(num) {
   return num.toFixed(2);
 }
 
-function reset(arr){
+function reset(arr) {
   document.getElementById('avgwt').style.color = '#404E67';
   document.getElementById('avgtat').style.color = '#404E67';
   document.getElementById('avgwt').innerHTML = "Average Waiting Time = 0.00";
-        document.getElementById('avgtat').innerHTML = "Average Turn Around Time = 0.00";
+  document.getElementById('avgtat').innerHTML = "Average Turn Around Time = 0.00";
 
   for (q = 1; q <= arr.length; q++) {
     document.getElementById('processTable').rows[q].cells[4].style.backgroundColor = '#fff';
     document.getElementById('processTable').rows[q].cells[5].innerHTML = null;
-  document.getElementById('processTable').rows[q].cells[6].innerHTML = null;
+    document.getElementById('processTable').rows[q].cells[6].innerHTML = null;
   }
-  
+
 }

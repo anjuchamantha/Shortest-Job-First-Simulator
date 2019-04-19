@@ -1,22 +1,31 @@
-#speed{
+h4 {
+    margin-left: 50px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#speed {
     margin: auto;
     padding: auto;
 }
-#btstop
-{
-  visibility: hidden;
+
+#btstop {
+    visibility: hidden;
 }
 
-p{
+p {
     color: #404E67;
     font-weight: bold;
     text-align: right;
 }
-button{
-    margin:1%;
+
+button {
+    margin: 1%;
 }
+
 canvas {
     margin: 50px;
+    margin-top: 20px;
     padding: 10px;
     background: #fff;
 }
@@ -47,7 +56,7 @@ body {
     margin: 6px 0 0;
     font-size: 22px;
     text-align: center;
-    
+
 }
 
 .table-title .add-new {
@@ -86,12 +95,15 @@ table.table th i {
 table.table th:nth-child(1) {
     width: 75px;
 }
+
 table.table th:nth-child(4) {
     width: 90px;
 }
+
 table.table th:nth-child(5) {
     width: 50px;
 }
+
 table.table th:nth-child(6) {
     width: 130px;
 }
@@ -145,4 +157,3 @@ table.table .form-control.error {
 table.table td .add {
     display: none;
 }
-

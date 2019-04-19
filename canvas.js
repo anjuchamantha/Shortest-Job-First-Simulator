@@ -21,7 +21,7 @@ function changeColor() {
     color = random_bg_color();
 }
 
-async function execute(speed) {
+async function execute(speed, name) {
 
 
     if (canvas.width <= x) {
@@ -33,7 +33,7 @@ async function execute(speed) {
         y = 0;
         x = 0;
     }
-    draw(c, x, y, color, i);
+    draw(c, x, y, color, i, name);
     x = x + 50 + 2;
     await timeout(speed);
     i++;
@@ -48,11 +48,14 @@ function random_bg_color() {
     return bgColor;
 }
 
-function draw(c, x, y, color, i) {
+function draw(c, x, y, color, i, name) {
     c.fillStyle = color;
     c.fillRect(x, y, 50, 50);
     c.fillStyle = '#000080';
     c.font = "10px Comic Sans MS";
     c.fillText(i, x, y + 62);
+    c.font = "15px Comic Sans MS";
+    c.fillStyle = '#fff';
+    c.fillText(name, x + 15, y + 30);
 
 }
